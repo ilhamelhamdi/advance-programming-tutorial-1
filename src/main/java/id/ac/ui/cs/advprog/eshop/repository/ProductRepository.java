@@ -9,14 +9,23 @@ import java.util.List;
 
 @Repository
 public class ProductRepository {
-    private List<Product> productaData = new ArrayList<>();
+    private List<Product> productData = new ArrayList<>();
 
-    public Product create(Product product){
-        productaData.add(product);
+    public Product create(Product product) {
+        productData.add(product);
         return product;
     }
 
-    public Iterator<Product> findAll(){
-        return  productaData.iterator();
+    public Iterator<Product> findAll() {
+        return productData.iterator();
+    }
+
+    public Product delete(String productId) {
+        Product deletedProduct = productData.stream()
+                .filter(product -> product.getProductId().equals(productId))
+                .findAny()
+                .orElseThrow();
+        productData.remove(deletedProduct);
+        return deletedProduct;
     }
 }
