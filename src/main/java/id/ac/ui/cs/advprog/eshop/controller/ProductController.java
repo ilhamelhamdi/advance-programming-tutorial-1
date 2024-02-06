@@ -23,14 +23,14 @@ public class ProductController {
     @GetMapping("/create")
     public String createProductPage(Model model) {
         Product product = new Product();
-        UUID uuid = UUID.randomUUID();
-        product.setProductId(uuid.toString());
         model.addAttribute("product", product);
         return "createProduct";
     }
 
     @PostMapping("/create")
     public String createProductPost(@ModelAttribute Product product, Model model){
+        UUID uuid = UUID.randomUUID();
+        product.setProductId(uuid.toString());
         service.create(product);
         return "redirect:list";
     }
