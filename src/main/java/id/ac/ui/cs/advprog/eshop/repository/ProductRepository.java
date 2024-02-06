@@ -20,6 +20,13 @@ public class ProductRepository {
         return productData.iterator();
     }
 
+    public Product findById(String productId) {
+        return productData.stream()
+                .filter(product -> product.getProductId().equals(productId))
+                .findAny()
+                .orElseThrow();
+    }
+
     public Product delete(String productId) {
         Product deletedProduct = productData.stream()
                 .filter(product -> product.getProductId().equals(productId))
@@ -27,5 +34,15 @@ public class ProductRepository {
                 .orElseThrow();
         productData.remove(deletedProduct);
         return deletedProduct;
+    }
+
+    public Product update(String productId, Product newProduct) {
+        Product oldProduct = productData.stream()
+                .filter(product -> product.getProductId().equals(productId)).
+                findAny()
+                .orElseThrow();
+        int productIndex = productData.indexOf(oldProduct);
+        productData.set(productIndex, newProduct);
+        return newProduct;
     }
 }

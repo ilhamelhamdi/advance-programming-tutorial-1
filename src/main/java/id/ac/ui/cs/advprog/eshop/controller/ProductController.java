@@ -46,4 +46,16 @@ public class ProductController {
         return ResponseEntity.ok().body("Deleted successfully");
     }
 
+    @GetMapping("/edit/{productId}")
+    public String editProductPage(@PathVariable String productId, Model model) {
+        Product product = service.findById(productId);
+        model.addAttribute("product", product);
+        return "editProduct";
+    }
+
+    @PostMapping("/edit/{productId}")
+    public String editProduct(@PathVariable String productId, @ModelAttribute Product product){
+        service.update(productId, product);
+        return "redirect:/product/list";
+    }
 }

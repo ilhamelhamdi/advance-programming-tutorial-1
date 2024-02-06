@@ -25,6 +25,7 @@
             <td th:text="${product.productName}"></td>
             <td th:text="${product.productQuantity}"></td>
             <td>
+                <a th:href="@{'/product/edit/' + ${product.productId}}" class="btn btn-success btn-sm mb-3">Edit</a>
                 <button class="btn btn-danger btn-sm mb-3" th:data-product-id="${product.productId}"
                         onclick="deleteProduct(this.getAttribute('data-product-id'))">Delete
                 </button>
