@@ -22,6 +22,7 @@ public class ProductRepositoryTest {
     @BeforeEach
     void setUp() {
     }
+
     @Test
     void testCreateAndFind() {
         Product product = new Product();
@@ -87,7 +88,7 @@ public class ProductRepositoryTest {
     }
 
     @Test
-    void testFindByIdIfIdNotFound(){
+    void testFindByIdIfIdNotFound() {
         Product product = new Product();
         product.setProductId("3cf20657-5575-442e-b102-a96021a3112b");
         product.setProductName("Sampo Cap Bambang");
@@ -98,7 +99,7 @@ public class ProductRepositoryTest {
     }
 
     @Test
-    void testFindByIdIfMoreThanOneProduct(){
+    void testFindByIdIfMoreThanOneProduct() {
         Product product1 = new Product();
         product1.setProductId("3cf20657-5575-442e-b102-a96021a3112b");
         product1.setProductName("Sampo Cap Bambang");
@@ -121,6 +122,41 @@ public class ProductRepositoryTest {
         assertEquals(product2.getProductId(), savedProduct.getProductId());
         assertEquals(product2.getProductName(), savedProduct.getProductName());
         assertEquals(product2.getProductQuantity(), savedProduct.getProductQuantity());
+    }
+
+    @Test
+    void testUpdate() {
+        Product oldProduct = new Product();
+        oldProduct.setProductId("3cf20657-5575-442e-b102-a96021a3112b");
+        oldProduct.setProductName("Sampo Cap Bambang");
+        oldProduct.setProductQuantity(100);
+        productRepository.create(oldProduct);
+
+        Product newProduct = new Product();
+        newProduct.setProductId(oldProduct.getProductId());
+        newProduct.setProductName("Sampo Cap Udin");
+        newProduct.setProductQuantity(50);
+        productRepository.update(newProduct.getProductId(), newProduct);
+
+        Product updatedProduct = productRepository.findById(newProduct.getProductId());
+        assertEquals(updatedProduct.getProductName(), newProduct.getProductName());
+        assertEquals(updatedProduct.getProductQuantity(), newProduct.getProductQuantity());
+    }
+
+    @Test
+    void testUpdateIfIdNotFound() {
+        Product product1 = new Product();
+        product1.setProductId("3cf20657-5575-442e-b102-a96021a3112b");
+        product1.setProductName("Sampo Cap Bambang");
+        product1.setProductQuantity(100);
+        productRepository.create(product1);
+
+        Product product2 = new Product();
+        product2.setProductId("910aac58-48df-45e3-a5e4-34417906d8b3"); // different id
+        product2.setProductName("Sampo Cap Usep");
+        product2.setProductQuantity(50);
+
+        assertThrows(NoSuchElementException.class, () -> productRepository.update(product2.getProductId(), product2));
     }
 
 
