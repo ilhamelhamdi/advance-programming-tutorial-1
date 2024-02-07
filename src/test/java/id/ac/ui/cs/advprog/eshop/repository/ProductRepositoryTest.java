@@ -159,5 +159,22 @@ public class ProductRepositoryTest {
         assertThrows(NoSuchElementException.class, () -> productRepository.update(product2.getProductId(), product2));
     }
 
+    @Test
+    void testDelete(){
+        Product product = new Product();
+        product.setProductId("3cf20657-5575-442e-b102-a96021a3112b");
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+        productRepository.create(product);
 
+        Product deletedProduct = productRepository.delete(product.getProductId());
+        assertEquals(deletedProduct.getProductId(), product.getProductId());
+        assertEquals(deletedProduct.getProductName(), product.getProductName());
+        assertEquals(deletedProduct.getProductQuantity(), product.getProductQuantity());
+    }
+
+    @Test
+    void testDeleteIfIdNotFound(){
+        assertThrows(NoSuchElementException.class, () -> productRepository.delete("3cf20657-5575-442e-b102-a96021a3112b"));
+    }
 }
