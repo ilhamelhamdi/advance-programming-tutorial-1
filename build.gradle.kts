@@ -27,7 +27,6 @@ val seleniumJavaVersion = "4.14.1"
 val seleniumJupiterVersion = "5.0.1"
 val webdrivermanagerVersion = "5.6.3"
 val junitJupiterVersion = "5.9.1"
-//val SONAR_SECRET = System.getenv("SONAR_SECRET")
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
@@ -48,11 +47,10 @@ sonar {
 	properties {
 		property("sonar.projectKey", "ilhamelhamdi_advance-programming-tutorial-1")
 		property("sonar.organization", "ilhamelhamdi")
-		property("sonar.token", "dc46295a89f134b543103623e8cda06d54605676")
+		property("sonar.token", System.getenv("SONAR_SECRET"))
 		property("sonar.host.url", "https://sonarcloud.io")
 		property("sonar.junit.reportPaths", mutableListOf("build/test-results/test/"))
 		property("sonar.tests", mutableListOf("src/test/java/"))
-//		property("sonar.scm.provider", "git")
 		property("sonar.scm.disabled", "true")
 	}
 }
