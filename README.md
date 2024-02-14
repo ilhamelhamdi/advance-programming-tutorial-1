@@ -7,9 +7,31 @@ NPM     : 2206081194
 
 Link Web Server : https://advshop-elhamdi.koyeb.app/
 
-Scanned by SonarCloud <br> 
+Scanned by SonarCloud <br>
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ilhamelhamdi_advance-programming-tutorial-1&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ilhamelhamdi_advance-programming-tutorial-1)
 
+<details open>
+<summary><h2>Modul 2</h2></summary>
+
+### Code Quality Issue
+
+1. SonarQube secret issue
+   Terdapat issue dimana konfigurasi token sonarcloud ditulis langsung pada source code. Untuk mengatasi hal ini, token
+   perlu disimpan dan diakses di environment variable.
+
+### Implementasi _Continous Integration_ & _Continous Deployment_
+
+Implementasi Github Workflow pada repositori ini telah memenuhi prinsip CI/CD. Pertama, dari sisi CI, kode pada proyek
+ini telah menerapkan automasi script untuk melakukan verifikasi kode, seperti menjalankan _test script_ dan _code
+quality analysis_. Pada proyek ini, test script diimplementasikan pada workflows `ci.yml` dan _code quality analysis_
+diimplementasikan pada workflow `build.yml`. Selain itu, proyek ini juga telah mengimplementasikan Continous Deployment
+dengan menerapkan automasi pada proses _delivery_ atau _deployment_. Proyek ini dideploy pada
+PaaS [Koyeb](https://www.koyeb.com/) secara otomatis dengan menggunakan fitur autodeploy pada console Koyeb.
+
+</details>
+
+<details>
+<summary><h2>Modul 1</h2></summary>
 
 ## Refleksi 1
 
@@ -56,3 +78,5 @@ ditemukan, program akan crash karena tidak ada exception handling.
    Repeat Yourself (DRY)". Selain itu, fungsi mengecek jumlah produk juga memiliki potensi masalah clean code dalam hal
    _coupling_/ketergantungan dengan kode lain, seperti fungsi create dan delete. Sebaiknya test untuk mengecek jumlah
    produk dapat digabung dalam functional test untuk fitur create dan delete.
+
+</details>
