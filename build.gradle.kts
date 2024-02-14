@@ -3,6 +3,7 @@ plugins {
 	jacoco
 	id("org.springframework.boot") version "3.2.2"
 	id("io.spring.dependency-management") version "1.1.4"
+	id("org.sonarqube") version "4.4.1.3373"
 }
 
 group = "id.ac.ui.cs.advprog"
@@ -40,6 +41,19 @@ dependencies {
 	testImplementation("io.github.bonigarcia:webdrivermanager:$webdrivermanagerVersion")
 	testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
 	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
+}
+
+sonar {
+	properties {
+		property("sonar.projectKey", "ilhamelhamdi_advance-programming-tutorial-1")
+		property("sonar.organization", "ilhamelhamdi")
+		property("sonar.token", "dc46295a89f134b543103623e8cda06d54605676")
+		property("sonar.host.url", "https://sonarcloud.io")
+		property("sonar.junit.reportPaths", mutableListOf("build/test-results/test/"))
+		property("sonar.tests", mutableListOf("src/test/java/"))
+//		property("sonar.scm.provider", "git")
+		property("sonar.scm.disabled", "true")
+	}
 }
 
 tasks.register<Test>("unitTest"){

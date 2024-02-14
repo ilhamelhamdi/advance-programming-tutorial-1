@@ -5,6 +5,9 @@ Repositori ini merupakan proyek untuk tugas mata kuliah _Advance Programming_ (T
 Nama    :  Ilham Abdillah Alhamdi <br>
 NPM     : 2206081194
 
+Scanned by SonarCloud <br> 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ilhamelhamdi_advance-programming-tutorial-1&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ilhamelhamdi_advance-programming-tutorial-1)
+
 
 ## Refleksi 1
 
