@@ -16,5 +16,7 @@ jobs:
           distribution: "temurin"
           java-version: "21"
           cache: "gradle"
+      - name: Set env
+        run:  echo "SONAR_SECRET=${{ secrets.SONAR_TOKEN }}"
       - name: SonarCloud Scan
         run: chmod +x ./gradlew &&./gradlew build sonar
