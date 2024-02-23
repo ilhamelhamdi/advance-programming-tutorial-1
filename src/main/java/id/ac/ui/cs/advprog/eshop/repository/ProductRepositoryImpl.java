@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public class ProductRepositoryImpl<T extends Product> implements ProductRepository<T> {
-    final private List<T> productData = new ArrayList<>();
+    final protected List<T> productData = new ArrayList<>();
 
     public T create(T product) {
         productData.add(product);
