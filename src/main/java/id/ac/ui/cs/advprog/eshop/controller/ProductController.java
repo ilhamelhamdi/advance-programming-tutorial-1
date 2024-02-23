@@ -29,8 +29,6 @@ public class ProductController {
 
     @PostMapping("/create")
     public String createProductPost(@ModelAttribute Product product, Model model) {
-        UUID uuid = UUID.randomUUID();
-        product.setProductId(uuid.toString());
         service.create(product);
         return "redirect:list";
     }

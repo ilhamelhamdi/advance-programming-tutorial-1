@@ -14,10 +14,6 @@ public class CarRepository {
     private final List<Car> carData = new ArrayList<>();
 
     public Car create(Car car){
-        if(car.getId() == null){
-            UUID uuid = UUID.randomUUID();
-            car.setId(uuid.toString());
-        }
         carData.add(car);
         return car;
     }
