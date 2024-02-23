@@ -1,7 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.service;
 
 import id.ac.ui.cs.advprog.eshop.model.Car;
-import id.ac.ui.cs.advprog.eshop.repository.ProductRepository;
+import id.ac.ui.cs.advprog.eshop.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,16 +12,16 @@ import java.util.List;
 @Service
 public class CarServiceImpl implements CarService {
     @Autowired
-    private ProductRepository<Car> carRepository;
+    private CarRepository carRepository;
 
     @Override
-    public Car create(Car car){
+    public Car create(Car car) {
         carRepository.create(car);
         return car;
     }
 
     @Override
-    public List<Car> findAll(){
+    public List<Car> findAll() {
         Iterator<Car> carIterator = carRepository.findAll();
         List<Car> allCar = new ArrayList<>();
         carIterator.forEachRemaining(allCar::add);
@@ -29,18 +29,22 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Car findById(String carId){
+    public Car findById(String carId) {
         return carRepository.findById(carId);
     }
 
     @Override
-    public void update(String carId, Car car){
-        carRepository.update(carId, car);
+    public Car update(String carId, Car car) {
+        return carRepository.update(carId, car);
     }
 
     @Override
-    public void deleteCarById(String carId){
+    public void delete(String carId) {
         carRepository.delete(carId);
     }
 
+    @Override
+    public Car findByColor(String color){
+        return carRepository.findByColor(color);
+    }
 }
