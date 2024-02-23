@@ -1,11 +1,13 @@
 package id.ac.ui.cs.advprog.eshop.repository;
 
+import id.ac.ui.cs.advprog.eshop.model.Product;
+
 import java.util.Iterator;
 
-public interface ProductRepository<T> {
-    T create(T item);
-    T findById(String id);
-    Iterator<T> findAll();
-    T update(String id, T updatedItem);
+public interface ProductRepository {
+    Product create(Product item);
+    Product findById(String id);
+    Iterator<Product> findAll();
+    Product update(String id, Product updatedItem);
     void delete(String id);
 }
