@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ProductRepositoryTest {
 
     @InjectMocks
-    ProductRepository productRepository;
+    ProductRepository<Product> productRepository;
 
     @BeforeEach
     void setUp() {
@@ -167,10 +167,8 @@ public class ProductRepositoryTest {
         product.setQuantity(100);
         productRepository.create(product);
 
-        Product deletedProduct = productRepository.delete(product.getId());
-        assertEquals(deletedProduct.getId(), product.getId());
-        assertEquals(deletedProduct.getName(), product.getName());
-        assertEquals(deletedProduct.getQuantity(), product.getQuantity());
+        productRepository.delete(product.getId());
+        assertThrows(NoSuchElementException.class, () -> productRepository.findById(product.getId()));
     }
 
     @Test

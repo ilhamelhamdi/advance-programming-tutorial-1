@@ -1,43 +1,37 @@
 package id.ac.ui.cs.advprog.eshop.repository;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
-import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-@Repository
-public class ProductRepository {
-    private List<Product> productData = new ArrayList<>();
+@org.springframework.stereotype.Repository
+public class ProductRepository<T extends Product> implements Repository<T>{
+    final private List<T> productData = new ArrayList<>();
 
-    public Product create(Product product) {
+    public T create(T product) {
         productData.add(product);
         return product;
     }
 
-    public Iterator<Product> findAll() {
+    public Iterator<T> findAll() {
         return productData.iterator();
     }
 
-    public Product findById(String productId) {
+    public T findById(String productId) {
         return productData.stream()
                 .filter(product -> product.getId().equals(productId))
                 .findAny()
                 .orElseThrow();
     }
 
-    public Product delete(String productId) {
-        Product deletedProduct = productData.stream()
-                .filter(product -> product.getId().equals(productId))
-                .findAny()
-                .orElseThrow();
-        productData.remove(deletedProduct);
-        return deletedProduct;
+    public void delete(String productId) {
+        productData.removeIf(product -> product.getId().equals(productId));
     }
 
-    public Product update(String productId, Product newProduct) {
-        Product oldProduct = productData.stream()
+    public T update(String productId, T newProduct) {
+        T oldProduct = productData.stream()
                 .filter(product -> product.getId().equals(productId)).
                 findAny()
                 .orElseThrow();
