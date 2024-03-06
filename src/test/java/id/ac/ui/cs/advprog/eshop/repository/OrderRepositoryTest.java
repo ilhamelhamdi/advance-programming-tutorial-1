@@ -31,7 +31,7 @@ public class OrderRepositoryTest {
         orders.add(order1);
         Order order2 = new Order("b3bf4565-d3e4-4d03-bf31-43db268e151d", products, 1708570000L, "Safira Sudrajat");
         orders.add(order2);
-        Order order3 = new Order("a1008308-738d-4d3d-87ff-20a2a0cd302f", products, 1708570000L, "Safira Sudrajat");
+        Order order3 = new Order("a1008308-738d-4d3d-87ff-20a2a0cd302f", products, 1708570000L, "Bambang Sudrajat");
         orders.add(order3);
     }
 
@@ -82,7 +82,7 @@ public class OrderRepositoryTest {
             orderRepository.save(order);
         }
 
-        Order findResult = orderRepository.findById(orders.get(1).getId());
+        Order findResult = orderRepository.findById("zczc");
         assertNull(findResult);
     }
 
