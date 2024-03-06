@@ -31,8 +31,6 @@ public class PaymentServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        this.paymentRepository = new PaymentRepository();
-
         List<Product> products = new ArrayList<>();
         Product product1 = new Product();
         product1.setId("3cf20657-5575-442e-b102-a96021a3112b");
@@ -57,7 +55,7 @@ public class PaymentServiceImplTest {
     @Test
     void testAddPayment() {
         Payment payment = paymentList.getFirst();
-        doReturn(payment).when(paymentRepository).save(payment);
+        doReturn(payment).when(paymentRepository).save(any(Payment.class));
 
         Payment result = paymentService.addPayment(payment.getOrder(), payment.getMethod(), payment.getPaymentData());
         verify(paymentRepository, times(1)).save(any(Payment.class));
