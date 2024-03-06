@@ -129,7 +129,7 @@ public class OrderServiceImplTest {
         Order order = orders.get(1);
         doReturn(new ArrayList<Order>()).when(orderRepository).findAllByAuthor(order.getAuthor().toLowerCase());
 
-        List<Order> results = orderService.findAllByAuthor(order.getAuthor());
+        List<Order> results = orderService.findAllByAuthor(order.getAuthor().toLowerCase());
         assertTrue(results.isEmpty());
     }
 }
