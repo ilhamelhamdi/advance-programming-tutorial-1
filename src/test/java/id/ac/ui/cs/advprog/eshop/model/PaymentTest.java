@@ -29,7 +29,7 @@ public class PaymentTest {
         products.add(product1);
         products.add(product2);
 
-        Order order = new Order("8de1c156-c3de-46ca-bf84-c5ee0fb6b0de", products, 1708560000L, "Safira Sudrajat");
+        this.order = new Order("8de1c156-c3de-46ca-bf84-c5ee0fb6b0de", products, 1708560000L, "Safira Sudrajat");
         paymentData = new HashMap<>();
         paymentData.put("voucherCode", "ESHOP1234ABC5678");
     }
