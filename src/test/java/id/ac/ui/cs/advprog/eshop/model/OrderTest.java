@@ -41,8 +41,8 @@ public class OrderTest {
 
         assertSame(this.products, order.getProducts());
         assertEquals(2, order.getProducts().size());
-        assertEquals("Sampo Cap Bambang", order.getProducts().get(0).getProductName());
-        assertEquals("Sampo Cap Usep", order.getProducts().get(1).getProductName());
+        assertEquals("Sampo Cap Bambang", order.getProducts().get(0).getName());
+        assertEquals("Sampo Cap Usep", order.getProducts().get(1).getName());
 
         assertEquals("8de1c156-c3de-46ca-bf84-c5ee0fb6b0de", order.getId());
         assertEquals(1708560000L, order.getOrderTime());
