@@ -3,9 +3,8 @@ package id.ac.ui.cs.advprog.eshop.model;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.util.Map;
+import java.util.*;
 
-@Builder
 @Getter
 public class Payment {
     String id;
@@ -14,7 +13,32 @@ public class Payment {
     Map<String, String> paymentData;
     Order order;
 
-    Payment(Order order, String method, String status, Map<String, String> paymentData){}
-    Payment(Order order, String method, Map<String, String> paymentData){}
-    void setStatus(String status){}
+    public Payment(Order order, String method, String status, Map<String, String> paymentData){
+        this.id = UUID.randomUUID().toString();
+        this.setStatus(status);
+        if(order == null){
+            throw new IllegalArgumentException("Order must not be null");
+        }
+        this.order = order;
+        String[] methodList = {"VOUCHER_CODE", "BANK_TRANSFER"};
+        if(Arrays.stream(methodList).noneMatch(item -> item.equals(method))){
+            throw new IllegalArgumentException("Invalid method");
+        }
+        this.method = method;
+        if(paymentData == null || paymentData.isEmpty()){
+            throw new IllegalArgumentException("Payment data must not be empty or null");
+        }
+        this.paymentData = paymentData;
+    }
+    public Payment(Order order, String method, Map<String, String> paymentData){
+        this(order, method, "WAITING", paymentData);
+    }
+    public void setStatus(String status){
+        String[] statusList = {"WAITING", "SUCCESS", "REJECTED"};
+        if(Arrays.stream(statusList).noneMatch(item -> item.equals(status))){
+            throw new IllegalArgumentException("Invalid status");
+        }
+        this.status = status;
+    }
+
 }
