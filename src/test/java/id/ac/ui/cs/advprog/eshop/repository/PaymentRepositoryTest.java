@@ -36,6 +36,7 @@ public class PaymentRepositoryTest {
         paymentData2.put("bankName", "BINI");
         paymentData2.put("referenceCode", "f247ca23-d51a-4209-9eba-8db5a9c057e2");
 
+        this.paymentList = new ArrayList<>();
         Payment payment1 = new Payment(order, PaymentMethod.VOUCHER_CODE.getValue(), paymentData1);
         Payment payment2 = new Payment(order, PaymentMethod.BANK_TRANSER.getValue(), paymentData2);
         paymentList.add(payment1);
