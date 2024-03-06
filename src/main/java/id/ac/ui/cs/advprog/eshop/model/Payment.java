@@ -16,19 +16,9 @@ public class Payment {
     public Payment(Order order, String method, String status, Map<String, String> paymentData){
         this.id = UUID.randomUUID().toString();
         this.setStatus(status);
-        if(order == null){
-            throw new IllegalArgumentException("Order must not be null");
-        }
-        this.order = order;
-        String[] methodList = {"VOUCHER_CODE", "BANK_TRANSFER"};
-        if(Arrays.stream(methodList).noneMatch(item -> item.equals(method))){
-            throw new IllegalArgumentException("Invalid method");
-        }
-        this.method = method;
-        if(paymentData == null || paymentData.isEmpty()){
-            throw new IllegalArgumentException("Payment data must not be empty or null");
-        }
-        this.paymentData = paymentData;
+        this.setOrder(order);
+        this.setMethod(method);
+        this.setPaymentData(paymentData);
     }
     public Payment(Order order, String method, Map<String, String> paymentData){
         this(order, method, "WAITING", paymentData);
@@ -41,4 +31,25 @@ public class Payment {
         this.status = status;
     }
 
+    private void setOrder(Order order){
+        if(order == null){
+            throw new IllegalArgumentException("Order must not be null");
+        }
+        this.order = order;
+    }
+
+    private void setMethod(String method){
+        String[] methodList = {"VOUCHER_CODE", "BANK_TRANSFER"};
+        if(Arrays.stream(methodList).noneMatch(item -> item.equals(method))){
+            throw new IllegalArgumentException("Invalid method");
+        }
+        this.method = method;
+    }
+
+    private void setPaymentData(Map<String, String> paymentData){
+        if(paymentData == null || paymentData.isEmpty()){
+            throw new IllegalArgumentException("Payment data must not be empty or null");
+        }
+        this.paymentData = paymentData;
+    }
 }
