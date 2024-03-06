@@ -28,12 +28,16 @@ public class PaymentServiceImpl implements PaymentService {
             throw new NoSuchElementException("Payment not found");
         }
         payment.setStatus(status);
-        if (PaymentStatus.SUCCESS.getValue().equals(status)) {
-            payment.getOrder().setStatus(OrderStatus.SUCCESS.getValue());
-        } else if (PaymentStatus.REJECTED.getValue().equals(status)) {
-            payment.getOrder().setStatus(OrderStatus.FAILED.getValue());
-        }
+        setOrderStatusByPaymentStatus(payment.getOrder(), status);
         return paymentRepository.save(payment);
+    }
+
+    private void setOrderStatusByPaymentStatus(Order order, String paymentStatus) {
+        if (PaymentStatus.SUCCESS.getValue().equals(paymentStatus)) {
+            order.setStatus(OrderStatus.SUCCESS.getValue());
+        } else if (PaymentStatus.REJECTED.getValue().equals(paymentStatus)) {
+            order.setStatus(OrderStatus.FAILED.getValue());
+        }
     }
 
     public Payment getPayment(String paymentId) {
