@@ -15,8 +15,13 @@ public class Payment {
     Map<String, String> paymentData;
     Order order;
 
+    public Payment(String id, Order order, String method, String status, Map<String, String> paymentData) {
+        this(order, method, PaymentStatus.WAITING.getValue(), paymentData);
+        this.id = id;
+    }
+
     public Payment(Order order, String method, String status, Map<String, String> paymentData) {
-        this.id = UUID.randomUUID().toString();
+        id = UUID.randomUUID().toString();
         this.setStatus(status);
         this.setOrder(order);
         this.setMethod(method);
