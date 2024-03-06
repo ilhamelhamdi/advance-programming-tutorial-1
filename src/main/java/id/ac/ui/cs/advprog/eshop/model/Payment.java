@@ -16,6 +16,11 @@ public class Payment {
     Order order;
 
     public Payment(String id, Order order, String method, String status, Map<String, String> paymentData) {
+        this(order, method, status, paymentData);
+        this.id = id;
+    }
+
+    public Payment(String id, Order order, String method, Map<String, String> paymentData) {
         this(order, method, PaymentStatus.WAITING.getValue(), paymentData);
         this.id = id;
     }
