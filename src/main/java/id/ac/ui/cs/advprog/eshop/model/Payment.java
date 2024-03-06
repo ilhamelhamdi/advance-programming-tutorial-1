@@ -1,5 +1,6 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
 import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import lombok.Builder;
 import lombok.Getter;
@@ -42,11 +43,11 @@ public class Payment {
     }
 
     private void setMethod(String method) {
-        String[] methodList = {"VOUCHER_CODE", "BANK_TRANSFER"};
-        if (Arrays.stream(methodList).noneMatch(item -> item.equals(method))) {
+        if (PaymentMethod.contains(method)) {
+            this.method = method;
+        } else {
             throw new IllegalArgumentException("Invalid method");
         }
-        this.method = method;
     }
 
     private void setPaymentData(Map<String, String> paymentData) {
